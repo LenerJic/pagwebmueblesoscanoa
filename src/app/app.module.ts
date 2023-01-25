@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CarouselModule} from 'primeng/carousel';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { TagModule } from 'primeng/tag';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +33,10 @@ import { ProductsComponent } from './components/products/products.component';
     ReactiveFormsModule,
     AppRoutingModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    CarouselModule,
+    ProgressSpinnerModule,
+    TagModule
   ],
   providers: [],
   bootstrap: [AppComponent]

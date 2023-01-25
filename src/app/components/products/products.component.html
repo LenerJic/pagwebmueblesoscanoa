@@ -33,27 +33,31 @@
           </div>
           <div class="row text-center">
               <div class="col-md-4">
-                  <span class="fa-stack fa-4x">
-                      <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                      <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                  </span>
-                  <h4 class="my-3">E-Commerce</h4>
+                <div class="flex flex-wrap justify-content-center">
+                    <div class="border-circle w-8rem h-8rem bg-yellow-400 flex align-items-center justify-content-center">
+                        <img src="../../../assets/img/products_page/escritorio.png" class="w-6rem">
+                    </div>
+                </div>
+                    <!-- <img src="../../../assets/img/products_page/tabla.png" height="90vh"> -->
+                  <h4 class="my-3">Escritorios</h4>
                   <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
               </div>
               <div class="col-md-4">
-                  <span class="fa-stack fa-4x">
-                      <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                      <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                  </span>
-                  <h4 class="my-3">Responsive Design</h4>
+                <div class="flex flex-wrap justify-content-center">
+                    <div class="border-circle w-8rem h-8rem bg-yellow-400 flex align-items-center justify-content-center">
+                        <img src="../../../assets/img/products_page/sillon.png" class="w-6rem">
+                    </div>
+                </div>
+                  <h4 class="my-3">Sillones</h4>
                   <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
               </div>
               <div class="col-md-4">
-                  <span class="fa-stack fa-4x">
-                      <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                      <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                  </span>
-                  <h4 class="my-3">Web Security</h4>
+                <div class="flex flex-wrap justify-content-center">
+                    <div class="border-circle w-8rem h-8rem bg-yellow-400 flex align-items-center justify-content-center">
+                        <img src="../../../assets/img/products_page/comedor.png" class="w-6rem">
+                    </div>
+                </div>
+                  <h4 class="my-3">Comedores</h4>
                   <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
               </div>
           </div>
@@ -66,9 +70,8 @@
               <h2 class="section-heading text-uppercase">Productos</h2>
               <h3 class="section-subheading text-muted">Se muestran algunos productos</h3>
           </div>
-          <div class="row">
+          <!-- <div class="row">
               <div class="col-lg-4 col-sm-6 mb-4">
-                  <!-- item 1-->
                   <div class="portfolio-item">
                       <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
                       <div class="portfolio-caption">
@@ -78,7 +81,6 @@
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6 mb-4">
-                  <!-- item 2-->
                   <div class="portfolio-item">
                       <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
                       <div class="portfolio-caption">
@@ -88,7 +90,6 @@
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6 mb-4">
-                  <!-- item 3-->
                   <div class="portfolio-item">
                       <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
                       <div class="portfolio-caption">
@@ -98,7 +99,6 @@
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6 mb-4">
-                  <!-- item 4-->
                   <div class="portfolio-item">
                       <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="..." />
                       <div class="portfolio-caption">
@@ -108,7 +108,6 @@
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6 mb-4">
-                  <!-- item 5-->
                   <div class="portfolio-item">
                       <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="..." />
                       <div class="portfolio-caption">
@@ -118,7 +117,6 @@
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6 mb-4">
-                  <!-- item 6-->
                   <div class="portfolio-item">
                       <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="..." />
                       <div class="portfolio-caption">
@@ -127,7 +125,39 @@
                       </div>
                   </div>
               </div>
+          </div> -->
+          <div *ngIf="lstproductos; else product_loading" class="row">
+            <p-carousel [value]="lstproductos" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+             [circular]="true" [autoplayInterval]="5000" [responsiveOptions]="responsiveOptions">
+                <ng-template pTemplate="header">
+                </ng-template>
+                <ng-template let-product pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-item-content">
+                            <div class="mb-3">
+                                <img src="{{product.imagenes[0]}}" [alt]="product.nombre" class="product-image" />
+                            </div>
+                            <div>
+                                <h4 class="mb-1">{{product.nombre}}</h4>
+                                <h6 class="mt-0 mb-3">{{product.precioVenta | currency:'S/ '}}</h6>
+                                <h6 class="mt-0 mb-3">Stock disponible: {{product.stock}} unidad(es)</h6>
+                                <p-tag *ngIf="(product.estado && product.stock>= 10)" severity="success" value="Con Stock" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="(product.estado && product.stock < 10)" severity="warning" value="Bajo Stock" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="!product.estado" severity="danger" value="Sin Stock" [rounded]="true"></p-tag>
+                                <div class="car-buttons mt-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
           </div>
+          <ng-template #product_loading>
+            <div class="flex flex-wrap md:justify-content-between justify-content-center card-container">
+                <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+                 strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+            </div>
+          </ng-template>
       </div>
     </section>
     <!-- Footer-->

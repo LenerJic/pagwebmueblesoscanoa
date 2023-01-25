@@ -1,0 +1,31 @@
+<button pButton pRipple type="button" icon="pi pi-comment" class="p-button-rounded p-button-success chatIconContainer p-button-lg z-1" (click)="showChatDialog()"></button>
+
+<p-dialog position="bottom-right" header="Chat" [(visible)]="displayChat">
+    <!--? #region Header -->
+    <ng-template pTemplate="header">
+        <div class="text-900 text-yellow-50 font-bold text-xl">
+           <i class="pi pi-prime text-green-500 text-xl"></i> Chat de Ayuda
+        </div>
+    </ng-template>
+    <!--? #endregion -->
+    <!--TODO #region Contenido -->
+    <div class="p-2">
+		<p *ngFor="let mensaje of chats" class="msj p-2 font-italic"
+            [ngClass]="(usuarioLogeado == mensaje.emisor) ? 'enviado' : 'recibido'">
+            {{mensaje.texto}}
+		</p>
+	</div>
+    <!--TODO #endregion -->
+    <!--? #region Footer -->
+    <ng-template pTemplate="footer">
+        <form class="text-muted input-group mt-2" (ngSubmit)="enviarMensaje()">
+            <input type="text" class="form-control" placeholder="Ingrese su mensaje" 
+                [(ngModel)]="nuevoMensaje" [ngModelOptions]="{standalone: true}">
+            <div class="input-group-append">
+                <button pButton pRipple type="button" icon="pi pi-send" (click)="enviarMensaje()"
+                 class="p-button-rounded p-button-text p-button-sm ml-2"></button>
+            </div>
+        </form>
+    </ng-template>
+    <!--? #endregion -->
+</p-dialog>

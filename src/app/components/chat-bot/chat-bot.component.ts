@@ -15,10 +15,10 @@ export class ChatBotComponent implements OnInit {
   usuarioLogeado: number = 123;
   nuevoMensaje: string = '';
   chats: any = [
-    {
+    /* {
       emisor: "idBot",
       texto: "Como le puedo ayudar?"
-    }
+    } */
   ]
 
   constructor(private socket: WebSocketService,
@@ -50,7 +50,7 @@ export class ChatBotComponent implements OnInit {
       }
       setTimeout(() => {
         this.chats.push(mensaje);
-      }, 500);
+      }, 200);
     });
   }
 }

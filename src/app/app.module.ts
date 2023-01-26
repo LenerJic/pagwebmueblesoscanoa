@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CarouselModule} from 'primeng/carousel';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
+import {GMapModule} from 'primeng/gmap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,7 +37,8 @@ import { ProductsComponent } from './components/products/products.component';
     DialogModule,
     CarouselModule,
     ProgressSpinnerModule,
-    TagModule
+    TagModule,
+    GMapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

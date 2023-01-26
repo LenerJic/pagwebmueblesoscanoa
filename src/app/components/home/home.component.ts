@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var google: any;
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   ngOnInit(){
-    location.href = '#page-top'
+    location.href = '#page-top';
   }
 }

@@ -132,7 +132,7 @@
                 <ng-template pTemplate="header">
                 </ng-template>
                 <ng-template let-product pTemplate="item">
-                    <div class="product-item">
+                    <div *ngIf="product.imagenes[0] !== null" class="product-item">
                         <div class="product-item-content">
                             <div class="mb-3">
                                 <img src="{{product.imagenes[0]}}" [alt]="product.nombre" class="product-image" />

@@ -2,24 +2,28 @@
 
 <p-dialog position="bottom-right" header="Chat" [(visible)]="displayChat">
     <!--? #region Header -->
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" class="p-2">
         <div class="text-900 text-yellow-50 font-bold text-xl">
-           <i class="pi pi-prime text-green-500 text-xl"></i> Chat de Ayuda
+           <img src="../../../assets/img/bot-icon-32.png" width="45vh"> Asistente virtual
         </div>
     </ng-template>
     <!--? #endregion -->
     <!--TODO #region Contenido -->
-    <div class="p-2">
-		<p *ngFor="let mensaje of chats" class="msj p-2 font-italic"
-            [ngClass]="(usuarioLogeado == mensaje.emisor) ? 'enviado' : 'recibido'">
-            {{mensaje.texto}}
-		</p>
+    <div id="contenido" class="p-2">
+        <div *ngFor="let mensaje of chats">
+            <img *ngIf="mensaje.emisor === 'idBot'" src="../../../assets/img/bot-icon-32.png"
+             width="35vh" class="img-bot p-1">
+            <p class="msj p-2 font-italic"
+                [ngClass]="(usuarioLogeado == mensaje.emisor) ? 'enviado' : 'recibido'">
+                {{mensaje.texto}}
+            </p>
+        </div>
 	</div>
     <!--TODO #endregion -->
     <!--? #region Footer -->
     <ng-template pTemplate="footer">
         <form class="text-muted input-group mt-2" (ngSubmit)="enviarMensaje()">
-            <input type="text" class="form-control" placeholder="Ingrese su mensaje" 
+            <input type="text" class="form-control border-round-left-2xl border-round-right-2xl" placeholder="Ingrese su mensaje" 
                 [(ngModel)]="nuevoMensaje" [ngModelOptions]="{standalone: true}">
             <div class="input-group-append">
                 <button pButton pRipple type="button" icon="pi pi-send" (click)="enviarMensaje()"
